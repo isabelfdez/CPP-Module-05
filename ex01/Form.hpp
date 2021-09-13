@@ -6,7 +6,7 @@
 /*   By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 15:03:42 by isfernan          #+#    #+#             */
-/*   Updated: 2021/09/10 15:31:49 by isfernan         ###   ########.fr       */
+/*   Updated: 2021/09/13 16:47:23 by isfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FORM_HPP
 
 # include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -33,6 +35,8 @@ class Form
 
 		void				incGrade();
 		void				decGrade();
+
+		void				beSigned(Bureaucrat b);
 		
 		class GradeTooHighException : public std::exception
 		{

@@ -6,11 +6,12 @@
 /*   By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 15:03:47 by isfernan          #+#    #+#             */
-/*   Updated: 2021/09/13 17:12:44 by isfernan         ###   ########.fr       */
+/*   Updated: 2021/09/13 18:24:08 by isfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
 
 Form::Form() : _name("No name"), _grade_sign(1), _grade_exec(1), _sign(0) { }
 
@@ -37,9 +38,8 @@ Form& 		Form::operator=(Form& obj)
 	if (this == &obj)
 		return (*this);
 	
-	Form *aux = new Form(obj);
 	this->_sign = obj._sign;
-	return (*aux);
+	return (*this);
 }
 
 const std::string	Form::getName()
@@ -68,6 +68,16 @@ void				Form::beSigned(Bureaucrat b)
 		throw (Form::GradeTooLowException());
 	else
 		this->_sign = 1;
+}
+
+void				Form::beExecuted(Bureaucrat b)
+{
+	if (!this->_sign)
+		throw (std::string("the form is not signed"));
+	if (b.getGrade() > this->_grade_exec)
+		throw (Form::GradeTooLowException());
+	else
+		this->execute();
 }
 
 

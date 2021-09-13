@@ -6,7 +6,7 @@
 /*   By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:18:26 by isfernan          #+#    #+#             */
-/*   Updated: 2021/09/10 15:34:00 by isfernan         ###   ########.fr       */
+/*   Updated: 2021/09/13 19:35:41 by isfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,25 @@ int main()
 	{
 		Form f2(-1, 20, "Boring form");
 	}
-	catch(const std::exception& e)
+	catch(std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
+	std::cout << std::endl << "LET'S TRY TO MAKE A BUREAUCRAT SIGN A FORM" << std::endl;
+	Bureaucrat bur(5, "Rick");
+	std::cout << std::endl << "VALID FORM" << std::endl;
+	bur.signForm(f1);
+	std::cout << f1 << std::endl;
+
+	std::cout << std::endl << "INVALID FORM" << std::endl;
+	Form f2(4, 20, "Morty's form");
+	std::cout << f2 << std::endl;
+	bur.signForm(f2);
+	std::cout << f2 << std::endl;
 	
-	
+	std::cout << std::endl << "FINALLY LET'S TRY THE COPY CONSTRUCTOR" << std::endl;
+	Form f3;
+	f3 = f1;
+	std::cout << f3 << std::endl;
 	return (0);
 }

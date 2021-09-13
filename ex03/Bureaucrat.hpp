@@ -6,7 +6,7 @@
 /*   By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:45:53 by isfernan          #+#    #+#             */
-/*   Updated: 2021/09/13 17:15:46 by isfernan         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:16:11 by isfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ class Bureaucrat
 		void				decGrade();
 
 		void				signForm(Form& f);
+		void				executeForm(Form& form);
+
 		
 		class GradeTooHighException : public std::exception
 		{

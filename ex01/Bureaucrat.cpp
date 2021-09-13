@@ -6,7 +6,7 @@
 /*   By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:45:56 by isfernan          #+#    #+#             */
-/*   Updated: 2021/09/10 15:17:42 by isfernan         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:12:31 by isfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ Bureaucrat& 		Bureaucrat::operator=(Bureaucrat& obj)
 {
 	if (this == &obj)
 		return (*this);
-	this->_grade = obj._grade;
-	return (*this);
+	
+	Bureaucrat *aux = new Bureaucrat(obj);
+	return (*aux);
 }
 
 const std::string	Bureaucrat::getName()
@@ -68,6 +69,29 @@ void				Bureaucrat::incGrade()
 		throw Bureaucrat::GradeTooHighException();
 	else
 		this->_grade = this->_grade - 1;
+}
+
+void				Bureaucrat::signForm(Form& f)
+{
+	if (f.getStatus())
+	{
+		std::cout << this->getName() << " cannot sign " << f.getName(); 
+		std::cout << " because it is already signed"  << std::endl;
+	}
+	else
+	{
+		try
+		{
+			f.beSigned(*this);
+			std::cout << this->_name << " signs " << f.getName() << std::endl;
+		}
+		catch(std::exception& e)
+		{
+			std::cout << this->getName() << " cannot sign " << f.getName()  << " because ";
+			std::cerr << e.what() << std::endl;
+		}
+		
+	}
 }
 
 

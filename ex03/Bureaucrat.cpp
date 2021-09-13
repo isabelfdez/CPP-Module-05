@@ -6,7 +6,7 @@
 /*   By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:45:56 by isfernan          #+#    #+#             */
-/*   Updated: 2021/09/13 14:21:30 by isfernan         ###   ########.fr       */
+/*   Updated: 2021/09/13 18:02:23 by isfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,49 @@ void				Bureaucrat::incGrade()
 	else
 		this->_grade = this->_grade - 1;
 }
+
+void				Bureaucrat::signForm(Form& f)
+{
+	if (f.getStatus())
+	{
+		std::cout << this->getName() << " cannot sign " << f.getName(); 
+		std::cout << " because it is already signed"  << std::endl;
+	}
+	else
+	{
+		try
+		{
+			f.beSigned(*this);
+			std::cout << this->_name << " signs " << f.getName() << std::endl;
+		}
+		catch(std::exception& e)
+		{
+			std::cout << this->getName() << " cannot sign " << f.getName()  << " because ";
+			std::cerr << e.what() << std::endl;
+		}
+		
+	}
+}
+
+void				Bureaucrat::executeForm(Form & form)
+{
+	try
+	{
+		form.beExecuted(*this);
+		std::cout << this->_name << " executs " << form.getName() << std::endl;
+	}
+	catch (std::string& e)
+	{
+		std::cout << this->_name << " cannot execute " << form.getName();
+		std::cout << " because " << e << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << this->_name << " cannot execute " << form.getName();
+		std::cout << " because " << e.what() << std::endl;
+	}
+}
+				
 
 
 
